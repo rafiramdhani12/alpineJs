@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="container mx-auto w-1/2 text-center mt-10 bg-lime-200 p-10 ronded-xl shadow"
+      x-data="{open: false }">
+      <button
+        x-bind:class="open ? 'bg-red-600' : 'bg-blue-600'"
+        @keyup.esc.window="open = false"
+        @click="open = !open"
+        class="py-2 px-5 text-white rounded-md"
+        x-text="open ? 'tutup' : 'buka'">
+        Buka
+      </button>
+
+      <div
+        x-transition.duration.1000ms
+        x-show="open"
+        class="w-3/4 mx-auto mt-4 p-5 bg-blue-400 rounded text-white">
+        lorem ipsum dolor sit amet
+      </div>
+    </div>
+
+    <div
+      @log="alert('data telah terkirim oleh ' + $event.detail.nama)"
+      class="container mx-auto w-3/4 text-center mt-10 bg-blue-200 p-10 ronded-xl shadow"
+      x-data="{pesan : '' , open: true , hoby : [] }">
+      <form action="/post" @submit.prevent="alert('data dikirim oleh memek')">
+        <label for="nama" class="text-sm font-medium text-gray-900 block mb-2"
+          >masukan pesan</label
+        >
+        <!-- once 1 kali -->
+        <textarea
+          x-model="pesan"
+          type="text"
+          class="bg-gray-50 border border-gray-500 focus:border-blue-500 block w-full p-2.5">
+        </textarea>
+        <span
+          x-text="pesan.length"
+          class="text-lh flex text-green-500 font-bold"
+          :class="pesan.length > 20 ? 'text-red-500' : '' "></span>
+        <input type="checkbox" id="checkbox" x-model="open" />
+        <label for="checkbox" x-text="!open ? 'kosong' : 'terisi' "></label>
+        <div class="mt-5">
+          <div class="flex items-center mb-2">
+            <input
+              x-model="hoby"
+              type="checkbox"
+              id="menulis"
+              value="menulis"
+              class="2-4 h-4 text-blue-600 border-gray-300 rounded" />
+            <label for="menulis" class="ml-2 text-sm">Menulis</label>
+          </div>
+        </div>
+        <div class="mt-5">
+          <div class="flex items-center mb-2">
+            <input
+              x-model="hoby"
+              type="checkbox"
+              id="menulis"
+              value="ngoding"
+              class="2-4 h-4 text-blue-600 border-gray-300 rounded" />
+            <label for="ngoding" class="ml-2 text-sm">ngoding</label>
+          </div>
+        </div>
+        <div class="mt-5">
+          <div class="flex items-center mb-2">
+            <input
+              x-model="hoby"
+              type="checkbox"
+              id="menulis"
+              value="ambatukam"
+              class="2-4 h-4 text-blue-600 border-gray-300 rounded" />
+            <label for="ambatukam" class="ml-2 text-sm">Ambatukam</label>
+          </div>
+          <p class="text-left text-sm">
+            Hobby:
+            <span
+              x-text="hoby.map(h => h.charAt(0).toUpperCase() + h.slice(1))"></span>
+          </p>
+        </div>
+        <!-- <button
+          type="submit"
+          class="py-2 px-5 text-white rounded-md bg-slate-500 mt-3">
+          click
+        </button> -->
+      </form>
+    </div>
+  </body>
+</html>

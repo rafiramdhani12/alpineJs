@@ -1,0 +1,74 @@
+  <div x-data>
+      <ul>
+        <template x-for="nm in $store.mahasiswa.nama">
+          <li x-text="nm"></li>
+        </template>
+      </ul>
+    </div>
+    <button x-data @click="alert('tombol telah di click')">klik saya</button>
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.store("mahasiswa", {
+          tahun: 2024,
+          nama: ["amba", "imut", "rusdi"],
+        });
+      });
+    </script>
+        <div
+      class="container mx-auto w-1/2 text-center mt-10 bg-lime-200 p-10 ronded-xl shadow"
+      x-data="{nama:'ambatukam' , angka : 3 }">
+      <h1
+        class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-pink-400 bg-clip-text text-transparent drop-shadow-sm">
+        halo, <span x-text="angka"></span> adalah angka
+        <span x-text="angka % 2 === 0 ? 'genap' : 'ganjil' "></span>
+      </h1>
+    </div>
+    <h1
+        class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-pink-400 bg-clip-text text-transparent drop-shadow-sm">
+        halo, <span x-html="link"></span>
+      </h1>
+      
+      toggle
+
+       <button
+        @click="open = !open"
+        class="py-2 px-5 bg-slate-600 text-white rounded-md"
+        x-text="open ? 'tutup' : 'buka'">
+        Buka
+      </button>
+      <div
+        x-show="open"
+        class="w-3/4 mx-auto mt-4 p-5 bg-blue-400 rounded text-white">
+        lorem ipsum dolor sit amet
+      </div>
+
+      sama aja beda method
+
+       <button
+        @click="open = !open"
+        class="py-2 px-5 bg-slate-600 text-white rounded-md"
+        x-text="open ? 'tutup' : 'buka'">
+        Buka
+      </button>
+      <template x-if="open">
+        <div class="w-3/4 mx-auto mt-4 p-5 bg-blue-400 rounded text-white">
+          lorem ipsum dolor sit amet
+        </div>
+      </template>
+      
+      <div
+      class="container mx-auto w-3/4 text-center mt-10 bg-lime-200 p-10 ronded-xl shadow"
+      x-data="{pesan : 'ambatukam'}">
+      <button
+        @click="ubahWarna"
+        data-pesan="hello world"
+        class="py-2 px-5 text-white rounded-md bg-blue-400"
+        id="tombolPesan">
+        Buka
+      </button>
+    </div>
+    <script>
+      function ubahWarna(e) {
+        e.target.classList.add("bg-red-500");
+      }
+    </script>
